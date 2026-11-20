@@ -38,9 +38,10 @@ clean:
 	nh clean all
 
 generate-master-key:
-	rage-keygen | rage -p -o master-key.age
-	@echo "Add public key to nixos/agenix.nix"
-	git add -N master-key.age
+	mkdir -p secrets
+	rage-keygen | rage -p -o secrets/master-key.age
+	@echo "Add the public key printed above to modules/secrets/agenix.nix"
+	git add -N secrets/master-key.age
 
 edit-secret:
 	agenix edit
