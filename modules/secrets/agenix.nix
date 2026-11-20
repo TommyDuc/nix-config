@@ -19,7 +19,7 @@
       masterIdentities = [
         {
           identity = ../../secrets/master-key.age;
-          pubkey = "age15zmkh57u252v7z22lluc4mpr25m0de9e5up6yzmulj3e30qrr9yse539k9";
+          pubkey = "age1jxav0439zr8ena99njckgyrke2r04xxhuxs82zal4gu05p5yyp4s4fu3ts";
         }
       ];
       storageMode = "local";
