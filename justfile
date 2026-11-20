@@ -87,6 +87,3 @@ enroll-tpm device='/dev/disk/by-partlabel/system':
 		--tpm2-with-pin=no \
 		--wipe-slot=tpm2 \
 		'{{device}}'
-
-build-pi-installer:
-	nom build .#pi4-installer
