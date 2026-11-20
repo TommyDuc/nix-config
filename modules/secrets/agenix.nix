@@ -19,10 +19,12 @@
       masterIdentities = [
         {
           identity = ../../secrets/master-key.age;
-          pubkey = "age15zmkh57u252v7z22lluc4mpr25m0de9e5up6yzmulj3e30qrr9yse539k9";
+          pubkey = "age1jxav0439zr8ena99njckgyrke2r04xxhuxs82zal4gu05p5yyp4s4fu3ts";
         }
       ];
       storageMode = "local";
+      # Host key used to decrypt secrets at boot. Keep in sync with `just generate-host-key`.
+      identityPaths = [ "/etc/agenix/agenix_key" ];
     in
     {
       homeManager.secrets = {
@@ -30,7 +32,10 @@
           agenix.homeManagerModules.default
           agenix-rekey.homeManagerModules.default
         ];
-        age.rekey = { inherit masterIdentities storageMode; };
+        age = {
+          inherit identityPaths;
+          rekey = { inherit masterIdentities storageMode; };
+        };
       };
       nixos.secrets =
         { config, ... }:
@@ -39,6 +44,7 @@
             agenix.nixosModules.default
             agenix-rekey.nixosModules.default
           ];
+          age.identityPaths = identityPaths;
           age.rekey = {
             inherit masterIdentities storageMode;
             localStorageDir = ../../secrets/${config.networking.hostName}/nixos;
