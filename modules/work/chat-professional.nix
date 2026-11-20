@@ -1,6 +1,6 @@
 {
   flake.modules.homeManager.work =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     {
       home.packages = with pkgs; [
         teams-for-linux
@@ -9,13 +9,13 @@
         teams-dimonoff = {
           name = "Teams Vectanor";
           icon = "teams-for-linux";
-          exec = "teams-for-linux --user-data-dir=/home/alex/.config/teams-vectanor";
+          exec = "teams-for-linux --user-data-dir=${config.xdg.configHome}/teams-vectanor";
           terminal = false;
         };
         teams-stelpro = {
           name = "Teams Stelpro";
           icon = "teams-for-linux";
-          exec = "teams-for-linux --user-data-dir=/home/alex/.config/teams-stelpro";
+          exec = "teams-for-linux --user-data-dir=${config.xdg.configHome}/teams-stelpro";
           terminal = false;
         };
       };
