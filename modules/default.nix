@@ -7,7 +7,6 @@
       nix
       programing
       secrets
-      style
       terminal
       users
       virtualisation
@@ -19,7 +18,6 @@
       network
       nix
       secrets
-      style
       system
       terminal
       users
