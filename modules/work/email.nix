@@ -1,7 +1,7 @@
 {
   flake.modules =
     let
-      user.email = "asirois@dimonoff.com";
+      user.email = "tduchesne@dimonoff.com";
     in
     {
       homeManager.work = { inherit user; };

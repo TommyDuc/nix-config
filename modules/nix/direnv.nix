@@ -10,7 +10,7 @@
         nixify = pkgs.writeShellScriptBin "nixify" ''
           if [ ! -e flake.nix ];
           then
-            nix flake new -t github:alex007sirois/nix-config .;
+            nix flake new -t github:TommyDuc/nix-config .;
             direnv allow;
           elif [ ! -e .envrc ];
           then
