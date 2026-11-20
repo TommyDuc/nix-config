@@ -1,3 +1,4 @@
+{ inputs, ... }:
 {
   flake.modules = {
     homeManager.nix =
@@ -10,7 +11,7 @@
         nixify = pkgs.writeShellScriptBin "nixify" ''
           if [ ! -e flake.nix ];
           then
-            nix flake new -t github:TommyDuc/nix-config .;
+            nix flake new -t ${inputs.self}#default .;
             direnv allow;
           elif [ ! -e .envrc ];
           then
