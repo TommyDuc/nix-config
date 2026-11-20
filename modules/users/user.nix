@@ -1,14 +1,14 @@
 {
   flake.modules = {
     homeManager.users =
-      { config, ... }:
+      { config, osConfig, ... }:
       let
         inherit (config.user) username;
       in
       {
         home = {
           inherit username;
-          homeDirectory = "/home/${username}";
+          homeDirectory = osConfig.users.users.${username}.home;
         };
       };
     nixos.users =
@@ -22,6 +22,7 @@
           "wheel"
         ];
         users.users.${username} = {
+          home = "/home/${username}";
           hashedPasswordFile = config.age.secrets.linux-password.path;
           isNormalUser = true;
           description = name;
