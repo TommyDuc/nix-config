@@ -5,15 +5,12 @@ let
   userOptions = {
     name = mkOption {
       type = types.str;
-      default = "Tommy Duchesne";
     };
     username = mkOption {
       type = types.str;
-      default = "tommy";
     };
     email = mkOption {
       type = types.str;
-      default = "tduchesne@dimonoff.com";
     };
   };
   nixosUserOptions = userOptions // {
