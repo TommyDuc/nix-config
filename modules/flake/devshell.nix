@@ -12,6 +12,7 @@
           packages = [
             config.agenix-rekey.package
             config.agenix-rekey.agePackage
+            age
             just
             nh
             nixos-anywhere

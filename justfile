@@ -37,10 +37,17 @@ switch deploy='' hostname=deploy:
 clean:
 	nh clean all
 
+# Uses age (not rage): rage's pinentry prompt times out after 30s.
 generate-master-key:
+	#!/usr/bin/env bash
+	set -euo pipefail
 	mkdir -p secrets
-	rage-keygen | rage -p -o secrets/master-key.age
-	@echo "Add the public key printed above to modules/secrets/agenix.nix"
+	umask 077
+	dir=$(mktemp -d)
+	trap 'rm -rf "$dir"' EXIT
+	age-keygen -o "$dir/key"
+	age -p -o secrets/master-key.age "$dir/key"
+	echo "Add the public key above to modules/secrets/agenix.nix"
 	git add -N secrets/master-key.age
 
 # Generate the host key that agenix uses to decrypt secrets at boot.
