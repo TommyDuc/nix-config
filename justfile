@@ -43,6 +43,13 @@ generate-master-key:
 	@echo "Add the public key printed above to modules/secrets/agenix.nix"
 	git add -N secrets/master-key.age
 
+# Generate the host key that agenix uses to decrypt secrets at boot.
+generate-host-key dir='/etc/agenix':
+	sudo mkdir -p {{dir}}
+	sudo ssh-keygen -t ed25519 -N '' -C agenix -f {{dir}}/agenix_key
+	@echo "Put this public key in modules/hosts/<host>/secrets.nix:"
+	sudo cat {{dir}}/agenix_key.pub
+
 edit-secret:
 	agenix edit
 	git add -N **/*.age
