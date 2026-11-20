@@ -7,22 +7,22 @@
   flake =
     let
       inherit (config.flake.modules) homeManager nixos;
-      hostName = "LP-0104";
+      hostName = "tommy-thinkpad";
       modules = with nixos; [
         default
         disk
-        work-laptop
+        tommy-thinkpad
         work
       ];
       homeModules = with homeManager; [
         default
-        work-laptop
+        tommy-thinkpad
         work
       ];
     in
     {
       nixosConfigurations.${hostName} = lib.nixosSystem { inherit modules; };
-      modules.nixos.work-laptop =
+      modules.nixos.tommy-thinkpad =
         { config, ... }:
         {
           home-manager.users.${config.user.username}.imports = homeModules;

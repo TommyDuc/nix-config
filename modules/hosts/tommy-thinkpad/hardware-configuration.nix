@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.work-laptop =
+  flake.modules.nixos.tommy-thinkpad =
     {
       config,
       lib,
