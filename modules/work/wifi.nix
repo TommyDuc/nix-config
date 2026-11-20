@@ -9,22 +9,6 @@
         environmentFiles = [ config.age.secrets.wifi-env.path ];
 
         profiles = {
-          DimOnOff = {
-            connection = {
-              id = "DimOnOff";
-              uuid = "d3e24449-6071-4da1-a0bf-1ca2c1b34912";
-              type = "wifi";
-            };
-            wifi.ssid = "DimOnOff";
-            wifi-security.key-mgmt = "wpa-eap";
-            "802-1x" = {
-              eap = "peap;";
-              phase2-auth = "mschapv2";
-              identity = "$DOO_WIFI_IDENTITY";
-              password = "$DOO_WIFI_PASSWORD";
-            };
-          };
-
           Dimonoff-IoT = {
             connection = {
               id = "Dimonoff-IoT";
