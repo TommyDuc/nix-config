@@ -1,6 +1,8 @@
 default: write-flake build
 
 flake := justfile_directory()
+# Which host in modules/hosts/ this machine is. Single source: the ./hostname file.
+hostname := trim(read(justfile_directory() / "hostname"))
 
 write-flake:
 	nix run ".#write-flake"
@@ -12,27 +14,33 @@ update-all:
 	nix flake update
 
 [arg('deploy', long, help='SSH target for a remote build')]
-[arg('hostname', long, help='NixOS configuration name; defaults to deploy target')]
-build deploy='' hostname=deploy:
+[arg('host', long, help='NixOS configuration name; defaults to ./hostname')]
+build deploy='' host=hostname: (_check-host host)
 	nh os build \
 		--accept-flake-config \
-		{{if deploy != '' { f"--hostname {{hostname}} --target-host {{deploy}}" } else { '' } }} \
+		--hostname {{host}} \
+		{{if deploy != '' { f"--target-host {{deploy}}" } else { '' } }} \
 		{{flake}}
 
 [arg('deploy', long, help='SSH target for a remote test')]
-[arg('hostname', long, help='NixOS configuration name; defaults to deploy target')]
-test deploy='' hostname=deploy:
+[arg('host', long, help='NixOS configuration name; defaults to ./hostname')]
+test deploy='' host=hostname: (_check-host host)
 	nh os test \
-		{{if deploy != '' { f"--hostname {{hostname}} --target-host {{deploy}}" } else { '' } }} \
+		--hostname {{host}} \
+		{{if deploy != '' { f"--target-host {{deploy}}" } else { '' } }} \
 		{{flake}}
 
 [arg('deploy', long, help='SSH target for a remote switch')]
-[arg('hostname', long, help='NixOS configuration name; defaults to deploy target')]
-switch deploy='' hostname=deploy:
+[arg('host', long, help='NixOS configuration name; defaults to ./hostname')]
+switch deploy='' host=hostname: (_check-host host)
 	nh os boot \
 		--ask \
-		{{if deploy != '' { f"--hostname {{hostname}} --target-host {{deploy}}" } else { '' } }} \
+		--hostname {{host}} \
+		{{if deploy != '' { f"--target-host {{deploy}}" } else { '' } }} \
 		{{flake}}
+
+_check-host host:
+	@test -d '{{flake}}/modules/hosts/{{host}}' || (echo "Unknown host '{{host}}': no modules/hosts/{{host}}/" >&2; exit 1)
 
 clean:
 	nh clean all
@@ -51,10 +59,11 @@ generate-master-key:
 	git add -N secrets/master-key.age
 
 # Generate the host key that agenix uses to decrypt secrets at boot.
+# `dir` must match identityPaths in modules/secrets/agenix.nix.
 generate-host-key dir='/etc/agenix':
 	sudo mkdir -p {{dir}}
 	sudo ssh-keygen -t ed25519 -N '' -C agenix -f {{dir}}/agenix_key
-	@echo "Put this public key in modules/hosts/<host>/secrets.nix:"
+	@echo "Put this public key in modules/hosts/{{hostname}}/secrets.nix:"
 	sudo cat {{dir}}/agenix_key.pub
 
 edit-secret:
@@ -71,13 +80,13 @@ prepare-deploy-kexec target:
 # Install a host, optionally prompting for the disk-encryption passphrase.
 [confirm('This may erase all configured target disks. Continue?')]
 [arg('target', help='SSH destination, such as nixos@192.0.2.1')]
-[arg('hostname', help='NixOS configuration name in this flake')]
+[arg('host', long, help='NixOS configuration name; defaults to ./hostname')]
 [arg('extra-files', long, help='Directory to copy into the installed system')]
 [arg('disk-encrypt-key', long, help='Prompt for the LUKS passphrase without echoing it')]
 [arg('key-path', long, help='Installer path matching Disko passwordFile')]
-deploy target hostname extra-files='' disk-encrypt-key='' key-path='/run/luks-passphrase':
+deploy target host=hostname extra-files='' disk-encrypt-key='' key-path='/run/luks-passphrase':
 	nixos-anywhere \
-		--flake {{flake}}#{{hostname}} \
+		--flake {{flake}}#{{host}} \
 		--target-host {{target}} \
 		{{if extra-files != ''  { f"--extra-files {{extra-files}}" } else { '' } }} \
 		{{if disk-encrypt-key != '' { f"--disk-encryption-keys {{key-path}} {{disk-encrypt-key}}"} else { '' }}}
