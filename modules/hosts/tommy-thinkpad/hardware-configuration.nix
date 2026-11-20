@@ -1,5 +1,8 @@
+let
+  host = baseNameOf ./.;
+in
 {
-  flake.modules.nixos.tommy-thinkpad =
+  flake.modules.nixos.${host} =
     {
       config,
       lib,

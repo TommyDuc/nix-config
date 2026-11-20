@@ -3,30 +3,33 @@
   lib,
   ...
 }:
+let
+  # The directory name is the hostname; no other file repeats it.
+  host = baseNameOf ./.;
+in
 {
   flake =
     let
       inherit (config.flake.modules) homeManager nixos;
-      hostName = "tommy-thinkpad";
-      modules = with nixos; [
-        default
-        disk
-        tommy-thinkpad
-        work
+      modules = [
+        nixos.default
+        nixos.disk
+        nixos.${host}
+        nixos.work
       ];
-      homeModules = with homeManager; [
-        default
-        tommy-thinkpad
-        work
+      homeModules = [
+        homeManager.default
+        homeManager.${host}
+        homeManager.work
       ];
     in
     {
-      nixosConfigurations.${hostName} = lib.nixosSystem { inherit modules; };
-      modules.nixos.tommy-thinkpad =
+      nixosConfigurations.${host} = lib.nixosSystem { inherit modules; };
+      modules.nixos.${host} =
         { config, ... }:
         {
           home-manager.users.${config.user.username}.imports = homeModules;
-          networking = { inherit hostName; };
+          networking.hostName = host;
         };
     };
 }

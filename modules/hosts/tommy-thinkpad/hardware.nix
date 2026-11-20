@@ -1,11 +1,14 @@
 { inputs, ... }:
+let
+  host = baseNameOf ./.;
+in
 {
   flake-file.inputs.nixos-hardware.url = "github:NixOS/nixos-hardware";
 
   # Lenovo ThinkPad T15p Gen 3 (21DA): i7-12800H + Iris Xe + RTX 3050 Mobile.
   # nixos-hardware has no T15p profile; the P15v Gen 3 is the same chassis but
   # we compose the generic pieces to stay explicit.
-  flake.modules.nixos.tommy-thinkpad =
+  flake.modules.nixos.${host} =
     { config, ... }:
     {
       imports = with inputs.nixos-hardware.nixosModules; [

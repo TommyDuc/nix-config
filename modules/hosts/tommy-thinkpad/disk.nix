@@ -1,8 +1,11 @@
 { config, ... }:
+let
+  host = baseNameOf ./.;
+in
 {
   flake = {
-    modules.nixos.tommy-thinkpad = {
-      imports = [ config.flake.diskoConfigurations.tommy-thinkpad ];
+    modules.nixos.${host} = {
+      imports = [ config.flake.diskoConfigurations.${host} ];
 
       boot.initrd = {
         kernelModules = [
@@ -34,7 +37,7 @@
 
       services.fstrim.enable = true;
     };
-    diskoConfigurations.tommy-thinkpad = {
+    diskoConfigurations.${host} = {
       disko.devices = {
         disk.main = {
           type = "disk";
