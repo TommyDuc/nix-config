@@ -90,6 +90,43 @@
           };
         };
 
+        shortcuts = {
+          kmix.mic_mute = [
+            "Microphone Mute"
+            "Ctrl+Shift+F9"
+            "Meta+Volume Mute"
+          ];
+          mediacontrol = {
+            mediavolumedown = "Ctrl+Shift+F7";
+            mediavolumeup = "Ctrl+Shift+F8";
+            previousmedia = [
+              "Media Previous"
+              "Ctrl+Shift+F10"
+            ];
+            playpausemedia = [
+              "Media Play"
+              "Ctrl+Shift+F11"
+            ];
+            nextmedia = [
+              "Media Next"
+              "Ctrl+Shift+F12"
+            ];
+            seekbackwardmedia = [
+              "Media Rewind"
+              "Ctrl+Shift+PgDown"
+            ];
+            seekforwardmedia = [
+              "Media Fast Forward"
+              "Ctrl+Shift+PgUp"
+            ];
+          };
+          plasmashell = {
+            "next activity" = "Meta+A";
+            "previous activity" = "Meta+Shift+A";
+          };
+          "services/org.kde.konsole.desktop"._launch = [ ];
+        };
+
         panels = [
           {
             location = "bottom";
