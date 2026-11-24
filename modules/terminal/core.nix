@@ -26,12 +26,17 @@
         sessionVariables.PAGER = "less";
         shellAliases = {
           bat = "bat -p";
+          batc = "command bat --force-colorization --paging never";
           batf = "bat --style=full";
+          batp = "command bat --force-colorization --paging always";
         };
       };
 
       programs = {
-        bat.enable = true;
+        bat = {
+          enable = true;
+          config.theme = "ansi";
+        };
         bottom.enable = true;
         fd.enable = true;
         less.enable = true;
