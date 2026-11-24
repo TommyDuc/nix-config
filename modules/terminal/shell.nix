@@ -21,6 +21,12 @@
         initContent = ''
           bindkey '^H' backward-kill-word
           bindkey '5~' kill-word
+
+          tere() {
+            local result
+            result=$(command tere "$@")
+            [ -n "$result" ] && cd -- "$result"
+          }
         '';
       };
 

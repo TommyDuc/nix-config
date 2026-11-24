@@ -19,16 +19,24 @@
           rnr
           rustscan
           sd
+          tere
+          tree
           viddy
+          wl-clipboard
           xclip
           xh
         ];
         sessionVariables.PAGER = "less";
         shellAliases = {
+          atree = "command tree -a";
           bat = "bat -p";
           batc = "command bat --force-colorization --paging never";
           batf = "bat --style=full";
           batp = "command bat --force-colorization --paging always";
+          j = "just";
+          pp = "wl-copy --trim-newline";
+          rga = "rg --no-ignore --no-ignore-dot";
+          tree = "tree --gitignore -a -I '.git'";
         };
       };
 
