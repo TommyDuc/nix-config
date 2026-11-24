@@ -46,6 +46,12 @@
       };
 
       cli = {
+        session = {
+          grouping = "none";
+          thinking = "show";
+          sidebar = "hide";
+          verbosity = "high";
+        };
         keybinds = {
           "agent.cycle" = "tab";
         };
