@@ -1,4 +1,5 @@
-default: write-flake build
+default:
+	@just --list
 
 flake := justfile_directory()
 # Which host in modules/hosts/ this machine is. Single source: the ./hostname file.
