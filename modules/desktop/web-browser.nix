@@ -27,6 +27,12 @@
             fr_FR
             en_US
           ];
+          extensions = [
+            { id = "eimadpbcbfnmbkopoojfekhnkhdbieeh"; } # Dark Reader
+            { id = "mpiodijhokgodhhofbcjdecpffjipkle"; } # SingleFile
+            { id = "mnjggcdmjocbbbhaepdhchncahnbgone"; } # SponsorBlock
+            { id = "gebbhagfogifgggkldgodflihgfeippi"; } # Return YouTube Dislike
+          ];
         };
         firefox = {
           enable = true;
