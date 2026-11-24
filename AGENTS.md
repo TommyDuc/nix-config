@@ -28,22 +28,22 @@ This repository uses **`flake-parts` + `import-tree` + `flake-file`** (`modules/
 
 ## Directory Map
 
-| Path | Responsibility |
-| :--- | :--- |
-| `modules/flake/` | `flake-file` dendritic setup, `nixpkgs` (`nixos-unstable`), `devShells.default`, `nixfmt-tree` formatter, and flake template (`templates/flake/`). |
-| `modules/nix/` | `nh`/`nom`/`nvd`, `nix-community` Cachix, `direnv`/`nix-direnv` (+ `direnv-run`, `nixify`), flake registry & `NIX_PATH`, daily GC (`7d`), `nix-index-database` (`comma`), `allowUnfree`. |
-| `modules/system/` | `systemd-boot` EFI, PipeWire audio, Bluetooth, CUPS + Avahi + `brlaser` printing, NTFS, libinput touchpad. |
-| `modules/desktop/` | KDE Plasma 6 + SDDM (Wayland), Evolution (EWS), browsers (Firefox, Brave, Tangram), media/chat/productivity apps, `.face` icon. |
-| `modules/terminal/` | Alacritty + Zellij (`zellij/config.kdl`), Zsh + Oh My Zsh + Atuin + Starship, Helix (default editor), Git + Difftastic + Lazygit, SSH multiplexing, OpenCode, CLI utilities. |
-| `modules/programing/` | Language servers and Helix LSP/formatter settings (Nix, Python, Rust, JS/TS). |
-| `modules/virtualisation/` | Docker (`dive`, `lazydocker`, `docker-enable-qemu`), Podman (`oci-containers` backend), KVM/libvirtd + GNOME Boxes + SPICE USB redirection. |
-| `modules/locale/` | `America/Toronto`, `ca`/`cf` keyboard, `en_CA.UTF-8`, IBus `typing-booster` (`en-ca`/`fr-moderne`), Hunspell dicts. |
-| `modules/network/` | NetworkManager + OpenVPN plugin. |
-| `modules/disk/` | `disko` flake/NixOS integration; per-host disk layouts live in `modules/hosts/<host>/disk.nix` (GPT + LUKS2 + TPM2 + LVM swap/root). |
-| `modules/secrets/` | `agenix` + `agenix-rekey` configuration (`storageMode = "local"`). |
-| `modules/users/`, `modules/home/` | Custom `user.*` options, single-source identity, Home Manager module integration & NixOS-to-HM propagation. |
-| `modules/work/` | Work-specific aspect (Dimonoff/Amotus): Bitdefender, Tactical RMM, NetworkManager VPN/Wi-Fi profiles (`envsubst` secrets), encrypted SSH config, `*.fundamentum.test` `/etc/hosts` + CA cert, insecure Docker registry, `armv7l-linux` binfmt, Expo ports, Teams desktop entries. |
-| `modules/hosts/<host>/` | Per-host NixOS assembly, hardware (`nixos-hardware`), Disko layout, host agenix pubkey/secrets, and `stateVersion`. |
+| Path                              | Responsibility                                                                                                                                                                                                                                                                    |
+| :-------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `modules/flake/`                  | `flake-file` dendritic setup, `nixpkgs` (`nixos-unstable`), `devShells.default`, `nixfmt-tree` formatter, and flake template (`templates/flake/`).                                                                                                                                |
+| `modules/nix/`                    | `nh`/`nom`/`nvd`, `nix-community` Cachix, `direnv`/`nix-direnv` (+ `direnv-run`, `nixify`), flake registry & `NIX_PATH`, daily GC (`7d`), `nix-index-database` (`comma`), `allowUnfree`.                                                                                          |
+| `modules/system/`                 | `systemd-boot` EFI, PipeWire audio, Bluetooth, CUPS + Avahi + `brlaser` printing, NTFS, libinput touchpad.                                                                                                                                                                        |
+| `modules/desktop/`                | KDE Plasma 6 + SDDM (Wayland), Evolution (EWS), browsers (Firefox, Brave, Tangram), media/chat/productivity apps, `.face` icon.                                                                                                                                                   |
+| `modules/terminal/`               | Alacritty + Zellij (`zellij/config.kdl`), Zsh + Oh My Zsh + Atuin + Starship, Helix (default editor), Git + Difftastic + Lazygit, SSH multiplexing, OpenCode, CLI utilities.                                                                                                      |
+| `modules/programing/`             | Language servers and Helix LSP/formatter settings (Nix, Python, Rust, JS/TS).                                                                                                                                                                                                     |
+| `modules/virtualisation/`         | Docker (`dive`, `lazydocker`, `docker-enable-qemu`), Podman (`oci-containers` backend), KVM/libvirtd + GNOME Boxes + SPICE USB redirection.                                                                                                                                       |
+| `modules/locale/`                 | `America/Toronto`, `ca`/`cf` keyboard, `en_CA.UTF-8`, IBus `typing-booster` (`en-ca`/`fr-moderne`), Hunspell dicts.                                                                                                                                                               |
+| `modules/network/`                | NetworkManager + OpenVPN plugin.                                                                                                                                                                                                                                                  |
+| `modules/disk/`                   | `disko` flake/NixOS integration; per-host disk layouts live in `modules/hosts/<host>/disk.nix` (GPT + LUKS2 + TPM2 + LVM swap/root).                                                                                                                                              |
+| `modules/secrets/`                | `agenix` + `agenix-rekey` configuration (`storageMode = "local"`).                                                                                                                                                                                                                |
+| `modules/users/`, `modules/home/` | Custom `user.*` options, single-source identity, Home Manager module integration & NixOS-to-HM propagation.                                                                                                                                                                       |
+| `modules/work/`                   | Work-specific aspect (Dimonoff/Amotus): Bitdefender, Tactical RMM, NetworkManager VPN/Wi-Fi profiles (`envsubst` secrets), encrypted SSH config, `*.fundamentum.test` `/etc/hosts` + CA cert, insecure Docker registry, `armv7l-linux` binfmt, Expo ports, Teams desktop entries. |
+| `modules/hosts/<host>/`           | Per-host NixOS assembly, hardware (`nixos-hardware`), Disko layout, host agenix pubkey/secrets, and `stateVersion`.                                                                                                                                                               |
 
 ## Secrets (`agenix` + `agenix-rekey`)
 
