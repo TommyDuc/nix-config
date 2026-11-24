@@ -7,7 +7,9 @@
     }:
     {
       home.packages = with pkgs; [
+        git-cola
         git-ignore
+        meld
       ];
 
       programs = {
@@ -121,8 +123,19 @@
             };
           };
         };
+        zsh.initContent = ''
+          meldiff() {
+            if [[ -z ''${1:-} ]]; then
+              echo "usage: meldiff <ref>" >&2
+              return 1
+            fi
+            git difftool -t meld -d "$1~1" "$1" || return 1
+          }
+        '';
       };
       home.shellAliases = {
+        cdg = ''cd "$(git rev-parse --show-toplevel)"'';
+        dag = "git dag --all &";
         lg = "lazygit";
       };
     };
