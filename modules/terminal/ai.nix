@@ -1,5 +1,10 @@
 {
   flake.modules.homeManager.terminal = {
+    home.shellAliases = {
+      oc = "opencode";
+      occ = "opencode -c";
+    };
+
     programs.opencode = {
       enable = true;
       validateFiles = {
