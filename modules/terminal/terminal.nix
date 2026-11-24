@@ -75,6 +75,7 @@
         xdg.configFile."zellij/config.kdl".source = ./zellij/config.kdl;
 
         home.shellAliases = {
+          z = "zellij";
           zr = "zellij run -- direnv-run";
           zrf = "zellij run --floating -- direnv-run";
           zri = "zellij run --in-place -- direnv-run";
