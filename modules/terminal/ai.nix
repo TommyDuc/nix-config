@@ -25,6 +25,7 @@
 
       skills = {
         generic-commits = ./opencode/skills/generic-commits;
+        nix-version-check = ./opencode/skills/nix-version-check;
       };
     };
   };
