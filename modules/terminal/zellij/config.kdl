@@ -252,7 +252,7 @@ copy_command "wl-copy"
 copy_clipboard "system"
 serialize_pane_viewport true
 scrollback_lines_to_serialize 10000
-serialization_interval 300
+serialization_interval 60
 disable_session_metadata false
 stacked_resize true
 show_startup_tips false
