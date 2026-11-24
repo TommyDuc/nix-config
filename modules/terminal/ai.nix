@@ -22,6 +22,10 @@
           "agent.cycle" = "tab";
         };
       };
+
+      skills = {
+        generic-commits = ./opencode/skills/generic-commits;
+      };
     };
   };
 }
