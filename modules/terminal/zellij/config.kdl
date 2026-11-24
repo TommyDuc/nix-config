@@ -243,8 +243,6 @@ load_plugins {
 
 theme "catppuccin-mocha"
 default_mode "locked"
-session_name "default"
-attach_to_session true
 mouse_mode true
 scroll_mode_sync false
 pane_frames false

@@ -9,7 +9,7 @@
       };
 
     homeManager.terminal =
-      { config, ... }:
+      { config, lib, ... }:
       {
         programs = {
           alacritty = {
@@ -66,10 +66,13 @@
               };
             };
           };
-          zellij = {
-            enable = true;
-            enableZshIntegration = true;
-          };
+          zellij.enable = true;
+          # `zellij attach` resurrects a dead session, unlike plain `zellij`.
+          zsh.initContent = lib.mkOrder 200 ''
+            if [[ -z "$ZELLIJ" ]]; then
+              zellij attach --create default
+            fi
+          '';
         };
 
         xdg.configFile."zellij/config.kdl".source = ./zellij/config.kdl;
