@@ -7,7 +7,9 @@
     }:
     {
       home.packages = with pkgs; [
+        git-cola
         git-ignore
+        meld
       ];
 
       programs = {
@@ -90,9 +92,17 @@
               returnImmediately = true;
               nerdFontsVersion = "3";
               timeFormat = "2006-01-02 15:04:05";
+              theme = {
+                selectedLineBgColor = [ "#4b4873" ];
+                selectedRangeBgColor = [ "#4b4873" ];
+              };
             };
             git = {
               branchLogCmd = "git logs --graph";
+              truncateCopiedCommitHashesTo = 40;
+              localBranchSortOrder = "date";
+              remoteBranchSortOrder = "date";
+              diffContextSize = 5;
               diffRenderers = [
                 {
                   command = "difft --color=always --context={{diffContext}}";
@@ -101,10 +111,31 @@
               ];
               parseEmoji = true;
             };
+            refresher = {
+              refreshInterval = 10;
+            };
+            os = {
+              open = "alacritty -e nvim {{filename}}";
+              edit = "nvim {{filename}}";
+              editAtLine = "nvim {{filename}} +{{line}}";
+              editAtLineAndWait = "nvim {{filename}} +{{line}}";
+              editInTerminal = true;
+            };
           };
         };
+        zsh.initContent = ''
+          meldiff() {
+            if [[ -z ''${1:-} ]]; then
+              echo "usage: meldiff <ref>" >&2
+              return 1
+            fi
+            git difftool -t meld -d "$1~1" "$1" || return 1
+          }
+        '';
       };
       home.shellAliases = {
+        cdg = ''cd "$(git rev-parse --show-toplevel)"'';
+        dag = "git dag --all &";
         lg = "lazygit";
       };
     };

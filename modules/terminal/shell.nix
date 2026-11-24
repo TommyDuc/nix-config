@@ -5,7 +5,10 @@
         enable = true;
         autosuggestion.enable = true;
         syntaxHighlighting.enable = true;
-        history.size = 0;
+        history = {
+          size = 10000;
+          save = 50;
+        };
         oh-my-zsh = {
           enable = true;
           extraConfig = ''
@@ -18,6 +21,12 @@
         initContent = ''
           bindkey '^H' backward-kill-word
           bindkey '5~' kill-word
+
+          tere() {
+            local result
+            result=$(command tere "$@")
+            [ -n "$result" ] && cd -- "$result"
+          }
         '';
       };
 
@@ -29,8 +38,9 @@
         enable = true;
         settings = {
           update_check = false;
-          enter_accept = true;
+          enter_accept = false;
           filter_mode_shell_up_key_binding = "directory";
+          sync.records = true;
         };
       };
 

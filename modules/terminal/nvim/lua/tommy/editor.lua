@@ -1,0 +1,21 @@
+vim.opt.autoindent = true
+vim.opt.hlsearch = true
+vim.opt.ignorecase = true
+vim.opt.linebreak = true
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.shiftwidth = 4
+vim.opt.smartcase = true
+vim.opt.smartindent = true
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.expandtab = true
+vim.opt.virtualedit = "onemore"
+vim.opt.wrap = true
+vim.opt.signcolumn = "yes"
+vim.opt.scrolloff = 17
+vim.opt.timeoutlen = 4000
+vim.opt.updatetime = 200
+vim.opt.splitbelow = true -- cursor on new buffer
+vim.opt.splitright = true -- cursor on new buffer
+vim.filetype.add({ extension = { json = "jsonc" } })
