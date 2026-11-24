@@ -43,6 +43,13 @@
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs = {
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
     tactical-rmm = {
       url = "git+https://bitbucket.org/amotus/tactical-rmm-nix.git";
       inputs.nixpkgs.follows = "nixpkgs";
