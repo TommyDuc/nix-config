@@ -142,6 +142,7 @@
             "Places Icons Auto-resize" = false;
             "Places Icons Static Size" = 22;
           };
+          bluedevilglobalrc.General.launchState = "enable";
         };
       };
     };
