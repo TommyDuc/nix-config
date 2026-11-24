@@ -142,6 +142,7 @@
                     "preferred://filemanager"
                     "preferred://browser"
                     "applications:Alacritty.desktop"
+                    "applications:teams-for-linux.desktop"
                   ];
                   appearance.iconSpacing = "large";
                   behavior = {
