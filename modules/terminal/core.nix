@@ -34,6 +34,7 @@
           batf = "bat --style=full";
           batp = "command bat --force-colorization --paging always";
           j = "just";
+          open = "xdg-open";
           pp = "wl-copy --trim-newline";
           rga = "rg --no-ignore --no-ignore-dot";
           tree = "tree --gitignore -a -I '.git'";
