@@ -25,6 +25,7 @@ This repository uses **`flake-parts` + `import-tree` + `flake-file`** (`modules/
   - Home Manager runs as a NixOS module (`modules/home/home-manager.nix`) with `useGlobalPkgs = true`, `useUserPackages = true`, and `backupFileExtension = "hmbkp"`.
   - Custom `user.{name, username, email}` options (`modules/users/options.nix`) are defined once in `modules/users/identity.nix` on NixOS and propagated to Home Manager by `modules/home/propagate.nix`.
   - NixOS modules add supplementary user groups via `user.groups = [ ... ];` (consumed by `modules/users/user.nix`), rather than mutating `users.users.<name>.extraGroups` directly.
+  - Before modifying a configuration, ask yourself if it is host specific or module specific.
 
 ## Directory Map
 
