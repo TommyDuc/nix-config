@@ -90,6 +90,37 @@
           };
         };
 
+        panels = [
+          {
+            location = "bottom";
+            height = 46;
+            floating = true;
+            widgets = [
+              "org.kde.plasma.kickoff"
+              "org.kde.plasma.pager"
+              {
+                iconTasks = {
+                  launchers = [
+                    "applications:systemsettings.desktop"
+                    "preferred://filemanager"
+                    "preferred://browser"
+                    "applications:Alacritty.desktop"
+                  ];
+                  appearance.iconSpacing = "large";
+                  behavior = {
+                    grouping.method = "none";
+                    sortingMethod = "alphabetically";
+                  };
+                };
+              }
+              "org.kde.plasma.marginsseparator"
+              "org.kde.plasma.systemtray"
+              "org.kde.plasma.digitalclock"
+              "org.kde.plasma.showdesktop"
+            ];
+          }
+        ];
+
         configFile = {
           kdeglobals = {
             KDE = {
