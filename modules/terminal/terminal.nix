@@ -23,7 +23,7 @@
               };
               window = {
                 startup_mode = "Maximized";
-                opacity = 0.92;
+                opacity = 0.80;
                 decorations = "None";
               };
               scrolling = {
