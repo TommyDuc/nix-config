@@ -90,9 +90,17 @@
               returnImmediately = true;
               nerdFontsVersion = "3";
               timeFormat = "2006-01-02 15:04:05";
+              theme = {
+                selectedLineBgColor = [ "#4b4873" ];
+                selectedRangeBgColor = [ "#4b4873" ];
+              };
             };
             git = {
               branchLogCmd = "git logs --graph";
+              truncateCopiedCommitHashesTo = 40;
+              localBranchSortOrder = "date";
+              remoteBranchSortOrder = "date";
+              diffContextSize = 5;
               diffRenderers = [
                 {
                   command = "difft --color=always --context={{diffContext}}";
@@ -100,6 +108,16 @@
                 }
               ];
               parseEmoji = true;
+            };
+            refresher = {
+              refreshInterval = 10;
+            };
+            os = {
+              open = "alacritty -e nvim {{filename}}";
+              edit = "nvim {{filename}}";
+              editAtLine = "nvim {{filename}} +{{line}}";
+              editAtLineAndWait = "nvim {{filename}} +{{line}}";
+              editInTerminal = true;
             };
           };
         };
