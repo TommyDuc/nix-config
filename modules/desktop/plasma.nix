@@ -57,6 +57,11 @@
           ];
         };
 
+        kwin = {
+          edgeBarrier = 0;
+          cornerBarrier = false;
+        };
+
         kscreenlocker = {
           timeout = 30;
           passwordRequiredDelay = 60;
