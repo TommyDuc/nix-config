@@ -461,6 +461,7 @@ for _, lhs in ipairs({ "grn", "gra", "grr", "gri", "grt" }) do
 end
 pcall(vim.keymap.del, "x", "gra")
 
+local telescope = require("telescope.builtin")
 local lsp_group = vim.api.nvim_create_augroup("TommyLsp", { clear = true })
 
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -471,10 +472,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		local bopts = { buffer = bufnr, silent = true }
 
 		-- Navigation
-		keyset("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", bopts, { desc = "Go to definition" }))
-		keyset("n", "gy", vim.lsp.buf.type_definition, vim.tbl_extend("force", bopts, { desc = "Go to type definition" }))
-		keyset("n", "gi", vim.lsp.buf.implementation, vim.tbl_extend("force", bopts, { desc = "Go to implementation" }))
-		keyset("n", "gr", vim.lsp.buf.references, vim.tbl_extend("force", bopts, { desc = "Show references" }))
+		keyset("n", "gd", telescope.lsp_definitions, vim.tbl_extend("force", bopts, { desc = "Go to definition" }))
+		keyset("n", "gy", telescope.lsp_type_definitions, vim.tbl_extend("force", bopts, { desc = "Go to type definition" }))
+		keyset("n", "gi", telescope.lsp_implementations, vim.tbl_extend("force", bopts, { desc = "Go to implementation" }))
+		keyset("n", "gr", telescope.lsp_references, vim.tbl_extend("force", bopts, { desc = "Show references" }))
 
 		-- Rename
 		keyset("n", "<leader>rn", rename_symbol_normal_mode, vim.tbl_extend("force", bopts, { desc = "Rename symbol" }))
@@ -509,8 +510,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end, vim.tbl_extend("force", action_opts, { desc = "Toggle inlay hints" }))
 
 		-- Call hierarchy
-		keyset({ "n", "x" }, "<leader>ho", vim.lsp.buf.outgoing_calls, vim.tbl_extend("force", action_opts, { desc = "Outgoing calls" }))
-		keyset({ "n", "x" }, "<leader>hc", vim.lsp.buf.incoming_calls, vim.tbl_extend("force", action_opts, { desc = "Incoming calls" }))
+		keyset({ "n", "x" }, "<leader>ho", telescope.lsp_outgoing_calls, vim.tbl_extend("force", action_opts, { desc = "Outgoing calls" }))
+		keyset({ "n", "x" }, "<leader>hc", telescope.lsp_incoming_calls, vim.tbl_extend("force", action_opts, { desc = "Incoming calls" }))
 
 		-- Document highlight on CursorHold
 		if client and client:supports_method("textDocument/documentHighlight") then
@@ -530,7 +531,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 -- Telescope replacements for CocList mappings
-local telescope = require("telescope.builtin")
 local list_opts = { silent = true, nowait = true }
 keyset("n", "<leader>ca", telescope.diagnostics, vim.tbl_extend("force", list_opts, { desc = "Diagnostics list" }))
 keyset("n", "<leader>cc", telescope.commands, vim.tbl_extend("force", list_opts, { desc = "Commands" }))
