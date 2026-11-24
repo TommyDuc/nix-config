@@ -132,6 +132,8 @@
           "services/org.kde.konsole.desktop"._launch = [ ];
         };
 
+        spectacle.shortcuts.captureActiveWindow = "Ctrl+Shift+Print";
+
         panels = [
           {
             location = "bottom";
@@ -186,6 +188,14 @@
             "Places Icons Static Size" = 22;
           };
           bluedevilglobalrc.General.launchState = "enable";
+          spectaclerc = {
+            General = {
+              clipboardGroup = "PostScreenshotCopyImage";
+              rememberSelectionRect = "Never";
+              useReleaseToCapture = true;
+            };
+            GuiConfig.quitAfterSaveCopyExport = true;
+          };
         };
       };
     };
