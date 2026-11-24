@@ -1,4 +1,11 @@
+{ inputs, ... }:
 {
+  flake-file.inputs.plasma-manager = {
+    url = "github:nix-community/plasma-manager";
+    inputs.nixpkgs.follows = "nixpkgs";
+    inputs.home-manager.follows = "home-manager";
+  };
+
   flake.modules = {
     nixos.desktop =
       { pkgs, ... }:
@@ -18,5 +25,13 @@
           elisa
         ];
       };
+
+    homeManager.desktop = {
+      imports = [ inputs.plasma-manager.homeModules.plasma-manager ];
+
+      programs.plasma = {
+        enable = true;
+      };
+    };
   };
 }
