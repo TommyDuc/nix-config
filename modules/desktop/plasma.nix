@@ -182,6 +182,7 @@
           kwinrc = {
             Input.TabletMode = "off";
             Windows.Placement = "Maximizing";
+            "Effect-overview".BorderActivate = 9;
           };
           dolphinrc."KFileDialog Settings" = {
             "Places Icons Auto-resize" = false;
