@@ -43,6 +43,24 @@
             effect = "allow";
           }
         ];
+        # Hard-deny: applies after agent rules and saved approvals
+        policies = [
+          {
+            action = "tool.use";
+            resource = "read:*.env";
+            effect = "deny";
+          }
+          {
+            action = "tool.use";
+            resource = "read:*.env.*";
+            effect = "deny";
+          }
+          {
+            action = "tool.use";
+            resource = "read:*.env.example";
+            effect = "allow";
+          }
+        ];
       };
 
       cli = {
