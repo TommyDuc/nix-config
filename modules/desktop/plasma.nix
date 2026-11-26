@@ -194,7 +194,6 @@
             General = {
               clipboardGroup = "PostScreenshotCopyImage";
               rememberSelectionRect = "Never";
-              useReleaseToCapture = true;
             };
             GuiConfig.quitAfterSaveCopyExport = true;
           };
