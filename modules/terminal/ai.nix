@@ -5,6 +5,13 @@
       occ = "opencode -c";
     };
 
+    xdg.configFile = {
+      "opencode/plugins/i-have-adhd.js".text = ''
+        export { default } from '${./opencode/vendor/i-have-adhd}/.opencode/plugins/i-have-adhd.mjs';
+      '';
+      "opencode/.i-have-adhd-always".text = "";
+    };
+
     programs.opencode = {
       enable = true;
       validateFiles = {
