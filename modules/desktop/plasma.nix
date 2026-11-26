@@ -189,6 +189,7 @@
             "Places Icons Static Size" = 22;
           };
           bluedevilglobalrc.General.launchState = "enable";
+          powerdevilrc."AC/Display".TurnOffDisplayWhenIdle = false;
           spectaclerc = {
             General = {
               clipboardGroup = "PostScreenshotCopyImage";
