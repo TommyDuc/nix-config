@@ -48,6 +48,7 @@
         };
         bottom.enable = true;
         fd.enable = true;
+        jq.enable = true;
         less.enable = true;
         lesspipe.enable = true;
         ripgrep.enable = true;
