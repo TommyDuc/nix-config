@@ -138,7 +138,7 @@
           {
             location = "bottom";
             height = 46;
-            floating = true;
+            floating = false;
             widgets = [
               "org.kde.plasma.kickoff"
               "org.kde.plasma.pager"
