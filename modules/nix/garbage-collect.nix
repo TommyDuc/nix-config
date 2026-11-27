@@ -6,16 +6,14 @@ let
 in
 {
   flake.modules.nixos.nix = {
-    nix = {
-      gc = {
-        automatic = true;
-        dates = "daily";
-        options = "--delete-older-than 7d";
-      };
-      extraOptions = ''
-        min-free = ${toString (1 * GB)}
-        max-free = ${toString (5 * GB)}
-      '';
+    nix.extraOptions = ''
+      min-free = ${toString (1 * GB)}
+      max-free = ${toString (5 * GB)}
+    '';
+    programs.nh.clean = {
+      enable = true;
+      dates = "daily";
+      extraArgs = "--keep 5 --keep-since 30d";
     };
   };
 }
