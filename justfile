@@ -43,8 +43,16 @@ switch deploy='' host=hostname: (_check-host host)
 _check-host host:
 	@test -d '{{flake}}/modules/hosts/{{host}}' || (echo "Unknown host '{{host}}': no modules/hosts/{{host}}/" >&2; exit 1)
 
-clean:
-	nh clean all
+# Deletes generations except the current one.
+# By default the last 5 and those younger than 30 days.
+# Those are the same args than in './modules/nix/garbage-collect.nix'
+[arg('keep', long, pattern='(|[1-9]\d*)', help='The number of generations to keep')]
+[arg('since', long, pattern='(|[1-9]\d*(h|d))', help='Also keep generations newer than this (e.g. 30d, 12h)')]
+clean keep='5' since='30d':
+	nh clean all \
+		--ask \
+		{{if keep != '' { f"--keep {{keep}}" } else { '' }}} \
+		{{if since != '' { f"--keep-since {{since}}" } else { '' }}}
 
 # Uses age (not rage): rage's pinentry prompt times out after 30s.
 generate-master-key:
