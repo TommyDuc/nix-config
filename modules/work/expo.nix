@@ -1,6 +1,6 @@
 {
   flake.modules.nixos.work = {
-    networking.firewall.allowedTCPPorts = [
+    networking.firewall.lan.allowedTCPPorts = [
       8015
       9090
     ];
